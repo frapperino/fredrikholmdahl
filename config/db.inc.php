@@ -11,12 +11,12 @@ try{
   $pdo = new PDO('mysql:host=localhost;dbname=fredrikholmdahl', 'fredrikholmdahl', 'comviq91');
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $pdo->exec('SET NAMES "utf8"');
-  $dbConnectError = 'Database connection established.'; //message when connected, remove later
+  $dbConnectMessage = 'Database connection established.'; //message when connected, remove later
 }
 catch (PDOException $e)
 {
   //If unable to connect to database, show dbConnect.php page with message
-  $dbConnectError = 'Unable to connect to the database server: ' . $e->getMessage();
+  $dbConnectMessage = 'Unable to connect to the database server: ' . $e->getMessage();
 
   exit();
 }
