@@ -39,23 +39,17 @@ function loginUser(){
             $dbLoginMessage = 'Login successful.';
             $_SESSION['loggedIn'] = true;
             $_SESSION['user'] = $_POST['loginName'];
-            $_SESSION['password'] = md5(safe($_POST['loginPassword']) . 'klop');
+            $_SESSION['password'] = md5(safe($_POST['loginPassword']) . 'klop'); //make this more secure later (also the storage of passwords in the db)
             header('Location: /admin/indexadmin.php');
             //include $_SERVER['DOCUMENT_ROOT'] . '/admin/indexadmin.php';
             unset($_POST); //so session id does not update on refresh
             exit();
           }
-          else{
-            header('Location: index.php');
-            exit();
-          }
         }
       }
-      else{
-        header('Location: index.php');
-        exit();
-      }
     }
+    header('Location: index.php');
+    exit();
   }
   catch (Exception $e) {
     $dbLoginMessage = 'Login error!.' . $e->getMessage();
