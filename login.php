@@ -14,7 +14,7 @@
   if( isset($_POST['action']) && ($_POST['action'] == 'login') && ($_POST['loginName'] != "") && ($_POST['loginPassword'] != "")){
     loginUser();
   }else{
-    header('Location: index.php');
+    header('Location: public/indexpublic.php');
     exit();
   }
 

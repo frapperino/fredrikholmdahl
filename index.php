@@ -16,43 +16,11 @@
     header('Location: /admin/indexadmin.php');
     //include $_SERVER['DOCUMENT_ROOT'] . '/admin/indexadmin.php';
     exit();
+  }else{
+    header('Location: /public/indexpublic.php');
+    //include $_SERVER['DOCUMENT_ROOT'] . '/admin/indexadmin.php';
+    exit();
   }
 
+
 ?>
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Page Login</title>
-    <link rel="shortcut icon" href="/resources/img/AALogo1.png"/>
-
-		<!--Quicksand font family link did not work when index file was put in own directory so
-		the code was added to stylesheet.css instead.
-		<link rel="stylesheet" type="text/css" href="fonts.googleapis.com/css?family=Quicksand" />-->
-
-    <link type="text/css" rel="stylesheet" href="/resources/css/font-awesome.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/css/stylesheet.css"/>
-		<link type="text/css" rel="stylesheet" href="/resources/css/stylesheetNavbar.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap-theme.min.css"/>
-    <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
-
-    <script src="/resources/js/jquery-1.11.2.js"></script> <!-- use jquery.min.js later -->
-    <script src="/resources/js/bootstrap.js"></script>
-    <script src="/resources/js/custom.js"></script>
-  </head>
-  <body>
-    <form method="post" action="login.php">
-      <div class="input-group">
-        <?php
-          echo safe($dbConnectMessage) . '<br>';
-          echo print_r($_SESSION) . '<br>';
-        ?>
-        <input type="text" class="form-control" placeholder="Username" name="loginName" aria-describedby="basic-addon1">
-        <input type="password" class="form-control" placeholder="Password" name="loginPassword" aria-describedby="basic-addon1">
-        <input type="hidden" name="action" value="login">
-        <button type="submit" class="btn btn-default">Login</button>
-      </div>
-    <form>
-  </body>
-</html>

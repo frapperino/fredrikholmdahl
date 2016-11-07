@@ -48,7 +48,7 @@ function loginUser(){
         }
       }
     }
-    header('Location: index.php');
+    header('Location: /public/indexpublic.php');
     exit();
   }
   catch (Exception $e) {
@@ -61,7 +61,7 @@ function loginUser(){
 //move this to the logout.php file?
 function logoutUser(){
   session_destroy();
-  header('Location: /index.php'); //using header shows index.php in the url
+  header('Location: index.php'); //using header shows index.php in the url
   //include $_SERVER['DOCUMENT_ROOT'] . '/index.php';
   exit();
 }

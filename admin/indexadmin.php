@@ -17,7 +17,22 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/resources/functions/functions.php';
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Hello!</title>
+    <title>Admin page</title>
+    <link rel="shortcut icon" href="/resources/img/testlogo.jpg"/>
+
+		<!--Quicksand font family link did not work when index file was put in own directory so
+		the code was added to stylesheet.css instead.
+		<link rel="stylesheet" type="text/css" href="fonts.googleapis.com/css?family=Quicksand" />-->
+
+    <link type="text/css" rel="stylesheet" href="/resources/css/font-awesome.css"/>
+    <link type="text/css" rel="stylesheet" href="/resources/css/stylesheet.css"/>
+		<link type="text/css" rel="stylesheet" href="/resources/css/stylesheetNavbar.css"/>
+    <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap-theme.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
+
+    <script src="/resources/js/jquery-1.11.2.js"></script> <!-- use jquery.min.js later -->
+    <script src="/resources/js/bootstrap.js"></script>
+    <script src="/resources/js/custom.js"></script>
   </head>
   <body>
     <?php
@@ -35,7 +50,7 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/resources/functions/functions.php';
     <form method="post" action="/logout.php">
       <div class="input-group">
         <input type="hidden" name="action" value="logout">
-        <button type="submit" class="btn btn-default modalLogin">Logout</button>
+        <button type="submit" class="btn btn-default">Logout</button>
       </div>
     <form>
   </div>
