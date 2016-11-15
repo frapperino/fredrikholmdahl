@@ -33,7 +33,6 @@
 
     <link type="text/css" rel="stylesheet" href="/resources/css/font-awesome.css"/>
     <link type="text/css" rel="stylesheet" href="/resources/css/stylesheet.css"/>
-		<link type="text/css" rel="stylesheet" href="/resources/css/stylesheetNavbar.css"/>
     <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap-theme.min.css"/>
     <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 
@@ -46,9 +45,10 @@
       <div class="input-group">
         <?php
           echo safe($dbConnectMessage) . '<br>';
+          echo "The session information: " . '<br>';
           echo print_r($_SESSION) . '<br>';
         ?>
-        <input type="text" class="form-control" placeholder="Username" name="loginName" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" placeholder="Username" name="loginName" autofocus="true" aria-describedby="basic-addon1">
         <input type="password" class="form-control" placeholder="Password" name="loginPassword" aria-describedby="basic-addon1">
         <input type="hidden" name="action" value="login">
         <button type="submit" class="btn btn-default">Login</button>

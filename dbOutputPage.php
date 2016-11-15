@@ -13,6 +13,9 @@
         <?php
           echo safe($dbConnectMessage) . '<br>';
           echo safe($dbLoginMessage) . '<br>';
+          echo safe($insertMessage) . '<br>';
+          echo safe($showLinksMessage) . '<br>';
+          echo safe($deleteMessage) . '<br>';
         ?>
       </p>
   </div>
