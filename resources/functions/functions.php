@@ -83,10 +83,10 @@ function showLinks(){
     foreach ($result as $row) {
       if ($row['userId'] == $_SESSION['userId']){
         ?>
-        <div id="<?php $row['name'] ?>">
-          <a href="<?php echo $row['url'] ?>"> <?php echo $row['name'] ?></a>
-          <form class="linkToDelete" action="/deleteLink.php" method="post">
-            <input type="hidden" name="linkToDelete" value="<?php echo safe($row['name']);?>">
+        <div>
+          <form method="post" action="/deleteLink.php">
+            <a href="<?php echo $row['url'] ?>"><?php echo $row['name']?></a>
+            <input type="hidden" name="linkToDelete" value="<?php echo $row['name'];?>">
             <button type="submit" class="btn btn-default">Delete</button>
           </form>
           <br>
@@ -103,13 +103,13 @@ function showLinks(){
   }
 }
 
-function deleteLink($id){
+function deleteLink(){
   global $pdo;
   try{
-    $sql = 'DELETE FROM links WHERE name=:linkName';
+    $sql = 'DELETE FROM links WHERE name=:linkToDelete';
     $s = $pdo->prepare($sql);
     $s->execute(array(
-      ':linkName' => safe($id)
+      ':linkToDelete' => $_POST['linkToDelete']
     ));
     $deleteMessage = 'No errors deleting link';
     header('Location: /admin/indexadmin.php');

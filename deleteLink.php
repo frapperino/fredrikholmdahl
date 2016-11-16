@@ -11,9 +11,7 @@
   //including functions
   include_once $_SERVER['DOCUMENT_ROOT'] . '/resources/functions/functions.php';
 
-  if (isset($_POST['linkToDelete']){
-    //modal that asks are you sure before deleting the link
-    deleteLink($_POST['linkToDelete']);
-  }
+  deleteLink();
+
 
 ?>

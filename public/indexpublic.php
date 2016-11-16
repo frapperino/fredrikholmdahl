@@ -36,6 +36,9 @@
     <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap-theme.min.css"/>
     <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 
+    <link type="text/css" rel="stylesheet" href="/resources/css/paceTheme1.css"/>
+    <script src="/resources/js/pace.js"></script>
+
     <script src="/resources/js/jquery-1.11.2.js"></script> <!-- use jquery.min.js later -->
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/custom.js"></script>

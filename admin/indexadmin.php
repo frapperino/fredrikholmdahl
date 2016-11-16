@@ -29,35 +29,15 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/resources/functions/functions.php';
     <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap-theme.min.css"/>
     <link type="text/css" rel="stylesheet" href="/resources/css/bootstrap.min.css"/>
 
+    <link type="text/css" rel="stylesheet" href="/resources/css/paceTheme1.css"/>
+    <script src="/resources/js/pace.js"></script>
+
     <script src="/resources/js/jquery-1.11.2.js"></script> <!-- use jquery.min.js later -->
     <script src="/resources/js/bootstrap.js"></script>
     <script src="/resources/js/custom.js"></script>
   </head>
   <body>
-    <!-- MODAL CODE FOR ADDING LINKS-->
-    <div id="addLink" class="modal fade" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Add a link</h4>
-          </div>
-          <div class="modal-body">
-            <form method="post" action="/insertLink.php">
-              <div class="input-group">
-                <p>Add a name for the link</p>
-                <input id="insertId" type="text" class="form-control" placeholder="Name" name="linkName">
-                <p>Add the url</p>
-                <input type="text" class="form-control" placeholder="url" name="linkUrl">
-                <input type="hidden" name="action" value="insertLink">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Add</button>
-              </div>
-            <form>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <div class="col-md-4">
       <?php
@@ -87,6 +67,30 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/resources/functions/functions.php';
       </button>
       <br><br>
       <?php showLinks(); ?>
+    </div>
+    <!-- MODAL CODE FOR ADDING LINKS-->
+    <div id="addLink" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Add a link</h4>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="/insertLink.php">
+              <div class="input-group">
+                <p>Add a name for the link</p>
+                <input id="insertId" type="text" class="form-control" placeholder="Name" name="linkName">
+                <p>Add the url</p>
+                <input type="text" class="form-control" placeholder="url" name="linkUrl">
+                <input type="hidden" name="action" value="insertLink">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Add</button>
+              </div>
+            <form>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
