@@ -8,7 +8,7 @@ function safe($text){
 
 //Used for keeping the user logged in if still in session
 function adminLoggedIn(){
-  if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true){
+  if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true && $_SESSION['userRole'] == 1){
     return true;
   }
 }
@@ -16,18 +16,17 @@ function adminLoggedIn(){
 //move this to the login.php file?
 function loginUser(){
   global $pdo;
-  $uName = safe($_POST['loginName']);
-  $uPassword = safe($_POST['loginPassword']);
   try {
-    $reverseUserName = strrev($uName);
-    //använd $pwCheck sen, och spara på samma sätt i databasen också
-    $pwCheck = $uName . md5(safe($uPassword)) . $reverseUserName;
-    $sql = 'SELECT id, name, password FROM users';
+    $uName = safe($_POST['loginName']);
+    //$temp = safe($_POST['loginPassword']);
+    $pwCheck = safe(md5($_POST['loginName'] . strrev($_POST['loginPassword']) . $_POST['loginPassword'] . strrev($_POST['loginName'])));
+    $sql = 'SELECT id, name, password, role FROM users';
     $result = $pdo->query($sql);
     foreach($result as $row){
-      if(($row['name'] == $uName) && ($row['password'] == $uPassword) ){
+      if(($row['name'] == $uName) && ($row['password'] == $pwCheck) ){
         $dbLoginMessage = 'Login successful.';
         $_SESSION['loggedIn'] = true;
+        $_SESSION['userRole'] = $row['role'];
         $_SESSION['userId'] = $row['id'];
         $_SESSION['user'] = $row['name'];
         header('Location: /admin/indexadmin.php');
@@ -84,8 +83,8 @@ function showLinks(){
       if ($row['userId'] == $_SESSION['userId']){
         ?>
         <div>
+          <a href="<?php echo $row['url'] ?>"><?php echo $row['name']?></a>
           <form method="post" action="/deleteLink.php">
-            <a href="<?php echo $row['url'] ?>"><?php echo $row['name']?></a>
             <input type="hidden" name="linkToDelete" value="<?php echo $row['name'];?>">
             <button type="submit" class="btn btn-default">Delete</button>
           </form>
@@ -109,7 +108,7 @@ function deleteLink(){
     $sql = 'DELETE FROM links WHERE name=:linkToDelete';
     $s = $pdo->prepare($sql);
     $s->execute(array(
-      ':linkToDelete' => $_POST['linkToDelete']
+      ':linkToDelete' => safe($_POST['linkToDelete'])
     ));
     $deleteMessage = 'No errors deleting link';
     header('Location: /admin/indexadmin.php');
@@ -117,6 +116,33 @@ function deleteLink(){
   }
   catch (PDOException $e){
     $deleteMessage = 'Error deleting link from database: ' . $e->getMessage();
+    include $_SERVER['DOCUMENT_ROOT'] . '/dbOutputPage.php';
+    exit();
+  }
+}
+
+function registerNewUser(){
+  global $pdo;
+  if(isset($_POST['admin'])){
+    $adminStatus = 1;
+  }else{
+    $adminStatus = 2; //for other users?
+  }
+  $pw = safe(md5($_POST['userName'] . strrev($_POST['passwordOne']) . $_POST['passwordOne'] . strrev($_POST['userName'])));
+  try{
+    $sql = 'INSERT INTO users (name, role, password) VALUES (:userName, :role, :password)';
+    $s = $pdo->prepare($sql);
+    $s->execute(array(
+      ':userName' => safe($_POST['userName']),
+      ':role' => safe($adminStatus),
+      ':password' => safe($pw)
+    ));
+    $registerNewUserMessage = 'No errors creating new user: ' .  $_POST['userName'];
+    header('Location: /admin/indexadmin.php');
+    exit();
+  }
+  catch (PDOException $e){
+    $registerNewUserMessage = 'Error adding new user to database: ' . $e->getMessage();
     include $_SERVER['DOCUMENT_ROOT'] . '/dbOutputPage.php';
     exit();
   }

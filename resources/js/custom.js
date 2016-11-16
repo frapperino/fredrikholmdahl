@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
   //Autofocus in modal
-  $('.modal').on('shown.bs.modal', function () {
+  $('#addLink').on('shown.bs.modal', function () {
     $('#insertId').focus()
   })
-  function deleteElem(){
-    
-  }
+  $('#registerNewUser').on('shown.bs.modal', function () {
+    $('#enterUsername').focus()
+  })
 
   function clockTime(){
     var dateObject = new Date(); //has to be in the function in order for it to be updated every second.

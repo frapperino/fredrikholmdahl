@@ -16,6 +16,7 @@
           echo safe($insertMessage) . '<br>';
           echo safe($showLinksMessage) . '<br>';
           echo safe($deleteMessage) . '<br>';
+          echo safe($registerNewUserMessage) . '<br>';
         ?>
       </p>
   </div>

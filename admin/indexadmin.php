@@ -37,8 +37,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/resources/functions/functions.php';
     <script src="/resources/js/custom.js"></script>
   </head>
   <body>
-
-
     <div class="col-md-4">
       <?php
         echo safe($dbConnectMessage) . '<br>';
@@ -52,6 +50,10 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/resources/functions/functions.php';
         echo safe( "The session information: ") . '<br>';
         echo print_r($_SESSION) . '<br>';
       ?><br>
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registerNewUser">
+        Add new user
+      </button>
+      <br>
       <a href="/logout.php">Logout</a>
     </div>
 
@@ -63,11 +65,12 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/resources/functions/functions.php';
     <div class="col-md-4">
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addLink">
-        Add new
+        Add new link
       </button>
       <br><br>
       <?php showLinks(); ?>
     </div>
+
     <!-- MODAL CODE FOR ADDING LINKS-->
     <div id="addLink" class="modal fade" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -80,17 +83,51 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/resources/functions/functions.php';
             <form method="post" action="/insertLink.php">
               <div class="input-group">
                 <p>Add a name for the link</p>
-                <input id="insertId" type="text" class="form-control" placeholder="Name" name="linkName">
+                <input id="insertId" type="text" class="form-control" placeholder="Link name" name="linkName">
                 <p>Add the url</p>
                 <input type="text" class="form-control" placeholder="url" name="linkUrl">
                 <input type="hidden" name="action" value="insertLink">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Add link</button>
               </div>
-            <form>
+            </form>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- MODAL CODE FOR ADDING NEW USERS -->
+    <div id="registerNewUser" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Create new user</h4>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="/register.php">
+              <div class="input-group">
+                <p>Enter username</p>
+                <input id="enterUsername" type="text" class="form-control" placeholder="Username" name="userName">
+                <p>Enter password</p>
+                <input type="password" class="form-control" placeholder="******" name="passwordOne">
+                <p>Enter password again</p>
+                <input type="password" class="form-control" disabled="true" placeholder="******" name="passwordTWO">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" checked name="admin"> Make user an admin
+                  </label>
+                </div>
+                <input type="hidden" name="action" value="registerNewUser">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Create user</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </body>
 </html>
